@@ -16,7 +16,7 @@ public:
             temp.push_back(head->val);
             head=head->next;
         }
-        if(temp[0]==99999 || temp[0]==99998) return new ListNode(100000);
+       
         vector<int> new_vec;
         int i=temp.size()-1;
         int val= temp[i];
