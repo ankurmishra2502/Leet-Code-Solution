@@ -10,18 +10,9 @@
  */
 class Solution {
 public:
-    int length(ListNode*list1){
-        int count=0;
-        while(list1!=NULL){
-            count++;
-            list1=list1->next;
-        } 
-        return count;
-    }
+    
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        if(length(l1)<length(l2)){
-            addTwoNumbers(l2,l1);
-        }
+        
         int carry=0;
         vector<int> nums;
         while(l1!=NULL && l2!=NULL){
