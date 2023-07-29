@@ -20,7 +20,6 @@ public:
     }
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         if(length(l1)<length(l2)){
-            cout<<"f";
             addTwoNumbers(l2,l1);
         }
         int carry=0;
