@@ -12,11 +12,11 @@ public:
 			else return 1e9;
 		}
         if(dp[ind][amount]!=-1) return dp[ind][amount];
-        int notPick= solve(coins,ind-1,amount,dp);
         int pick=1e9;
         if(amount>=coins[ind]){
             pick =1+ solve(coins,ind,amount-coins[ind],dp);
         }
+        int notPick= solve(coins,ind-1,amount,dp);
         return dp[ind][amount]=min(pick,notPick);
     }
 };
