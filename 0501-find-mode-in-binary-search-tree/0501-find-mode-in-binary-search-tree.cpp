@@ -11,27 +11,30 @@
  */
 class Solution {
 public:
-    vector<int> findMode(TreeNode* root) {
-        if(!root) return {};
-        unordered_map<int,int> mp;
-        queue<TreeNode*> q;
-        int temp=0;
-        vector<int> ans;
-        q.push(root);
-        while(!q.empty()){
-            int n=q.size();
-            while(n>0){
-                TreeNode*temp= q.front();
-                mp[temp->val]++;
-                q.pop();
-                if(temp->left) q.push(temp->left);
-                if(temp->right) q.push(temp->right);
-                n--;
-            } 
-        }
-        for(auto x:mp) if(x.second > temp) temp = x.second;
-        for(auto x: mp) if(x.second == temp) ans.push_back(x.first);
+    std::vector<int> findMode(TreeNode* root) {
+        in_order_traversal(root);
+        return modes;
+    }
+private:
+    int current_val = 0;
+    int current_count = 0;
+    int max_count = 0;
+    std::vector<int> modes;
+
+    void in_order_traversal(TreeNode* node) {
+        if (!node) return;
         
-        return ans;
+        in_order_traversal(node->left);
+        
+        current_count = (node->val == current_val) ? current_count + 1 : 1;
+        if (current_count == max_count) {
+            modes.push_back(node->val);
+        } else if (current_count > max_count) {
+            max_count = current_count;
+            modes = { node->val };
+        }
+        current_val = node->val;
+
+        in_order_traversal(node->right);
     }
 };
